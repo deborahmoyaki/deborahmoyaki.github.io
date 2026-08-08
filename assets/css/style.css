@@ -139,6 +139,7 @@ code { background: var(--paper-alt); padding: 0.15em 0.4em; border-radius: 4px; 
 .pub-authors { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 2px; }
 .pub-authors strong { color: var(--teal-deep); }
 .pub-venue { font-size: 0.9rem; font-style: italic; color: var(--ink-soft); margin: 0 0 10px; }
+.pub-tags { margin: -4px 0 10px; }
 
 .read-paper-btn {
   display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700;
