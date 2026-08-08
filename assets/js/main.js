@@ -67,6 +67,30 @@ function initFooterYear() {
   if (year) year.textContent = new Date().getFullYear();
 }
 
+function renderNewsFeed(container, items) {
+  container.innerHTML = items.map((item) => {
+    const awardClass = item.type === 'Award' ? ' is-award' : '';
+    return `
+      <div class="news-item${awardClass}">
+        <div class="news-date-badge${awardClass}"><span class="nd-month">${item.month}</span><span class="nd-year">${item.year}</span></div>
+        <div class="news-item-body">
+          <span class="news-item-type">${item.type}</span>
+          <h3>${item.title}</h3>
+          <p>${item.body}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function initNewsFeed() {
+  if (typeof NEWS_ITEMS === 'undefined') return;
+  const home = document.getElementById('newsFeedHome');
+  if (home) renderNewsFeed(home, NEWS_ITEMS.slice(0, 8));
+  const all = document.getElementById('newsFeedAll');
+  if (all) renderNewsFeed(all, NEWS_ITEMS);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await Promise.all([
     loadPartial('site-header', '/partials/header.html'),
@@ -74,6 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   ]);
   initNav();
   initFooterYear();
+  initNewsFeed();
   initScrollReveal();
   initTagFilter();
 });
